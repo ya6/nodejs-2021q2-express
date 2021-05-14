@@ -2,21 +2,22 @@ const { v4: uuidv4 } = require('uuid');
 
 class Board {
   constructor({
-    id =  uuidv4(),
-    //  id ="uuid()",
-    name = 'USER',
-    login = 'user',
-    password = 'P@55w0rd'
+    id = uuidv4(),
+    title = 'test board',
+    columns: [
+      { id: columnsId = uuidv4(), title: columnsTitle = 'test column', order:columnsOrder = 0 },
+    ],
   } = {}) {
     this.id = id;
-    this.name = name;
-    this.login = login;
-    this.password = password;
+    this.title = title;
+    this.columns = [
+      { id: columnsId, title: columnsTitle, order: columnsOrder },
+    ];
   }
 
-  static toResponse(user) {
-    const { id, name, login } = user;
-    return { id, name, login };
+  static getBoard(board) {
+    const { id, title, columns } = board;
+    return { id, title, columns };
   }
 }
 
