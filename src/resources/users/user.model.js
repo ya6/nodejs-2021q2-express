@@ -1,6 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
 
- console.log( typeof uuidv4());
 class User {
   constructor({
     id =  uuidv4(),
