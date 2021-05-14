@@ -9,4 +9,10 @@ const updateUser = async (user) =>{
     return DATA_USERS[index];
 };
 
-module.exports = { getAll,  getUser, createUser, updateUser};
+const deleteUser = async (id) =>{
+    const index = DATA_USERS.findIndex(el => el.id === id);
+  return DATA_USERS.splice(index, 1) 
+} 
+
+
+module.exports = { getAll,  getUser, createUser, updateUser, deleteUser};
