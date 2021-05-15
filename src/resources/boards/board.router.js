@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Board = require("./board.model");
+const Task = require("../tasks/task.model");
 const boardsService = require("./board.service");
+const tasksService = require("../tasks/task.service");
 
 
 
@@ -10,6 +12,16 @@ const boardsService = require("./board.service");
     const boards = await boardsService.getAll();
     res.json(boards);
   });
+  
+  
+   router.route('/:boardId/tasks').get(async (req, res) => {
+    const {boardId} = req.params
+    const _tasks = await tasksService.getAll(boardId);
+    const tasks = _tasks.map((task)=>Task.getTask(task))
+    res.json(tasks);
+    });
+
+ 
 
 
 
