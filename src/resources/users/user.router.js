@@ -5,9 +5,10 @@ const usersService = require('./user.service');
 
 router.route('/:id').get(async (req, res) => {
   const {id} = req.params;
-  const user = await usersService.getUser(id)
-  res.status(user ? 200 : 404 );
-   res.json(User.toResponse(user));
+  const user = await usersService.getUser(id);
+  if (user) {
+    res.status(200).json(User.toResponse(user))
+  } else res.status(404).end(); 
 });
 
 
